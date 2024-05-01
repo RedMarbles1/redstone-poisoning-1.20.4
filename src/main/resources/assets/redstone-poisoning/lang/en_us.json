@@ -1,0 +1,9 @@
+{
+  "item.redstone-poisoning.weakredstone": "Weakened Redstone",
+  "death.attack.irritation": "%s died from severe irritation",
+  "death.attack.irritation.player": "%s died from severe irritation whilst trying to escape %s",
+  "death.attack.unknownpoison": "%s got poisoned to death by an unknown substance",
+  "death.attack.unknownpoison.player": "%s got poisoned to death by an unknown substance whilst trying to escape %s",
+  "death.attack.redpoison": "%s got poisoned to death by redstone overexposure",
+  "death.attack.redpoison.player": "%s got poisoned to death by redstone overexposure whilst trying to escape %s"
+}
