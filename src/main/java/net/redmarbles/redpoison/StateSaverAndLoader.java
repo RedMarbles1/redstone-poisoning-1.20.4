@@ -22,9 +22,13 @@ public class StateSaverAndLoader extends PersistentState {
             NbtCompound playerNbt = new NbtCompound();
 
             playerNbt.putDouble("currentHoldTime", playerData.CurrentHoldTime);
+            RedstonePoisoning.LOGGER.info("Saved CurrentHoldTime at value " + playerData.CurrentHoldTime);
             playerNbt.putBoolean("stage1Triggered", playerData.Stage1Triggered);
+            RedstonePoisoning.LOGGER.info("Saved Stage1Triggered at value " + playerData.Stage1Triggered);
             playerNbt.putBoolean("stage2Triggered", playerData.Stage2Triggered);
+            RedstonePoisoning.LOGGER.info("Saved Stage2Triggered at value " + playerData.Stage2Triggered);
             playerNbt.putBoolean("stage3Triggered", playerData.Stage3Triggered);
+            RedstonePoisoning.LOGGER.info("Saved Stage3Triggered at value " + playerData.Stage3Triggered);
 
             playersNbt.put(uuid.toString(), playerNbt);
         });
@@ -41,9 +45,13 @@ public class StateSaverAndLoader extends PersistentState {
             PlayerData playerData = new PlayerData();
 
             playerData.CurrentHoldTime = playersNbt.getCompound(key).getDouble("currentHoldTime");
+            RedstonePoisoning.LOGGER.info("Loading CurrentHoldTime at value " + playerData.CurrentHoldTime);
             playerData.Stage1Triggered = playersNbt.getCompound(key).getBoolean("stage1Triggered");
+            RedstonePoisoning.LOGGER.info("Loading Stage1Triggered at value " + playerData.Stage1Triggered);
             playerData.Stage2Triggered = playersNbt.getCompound(key).getBoolean("stage2Triggered");
+            RedstonePoisoning.LOGGER.info("Loading Stage2Triggered at value " + playerData.Stage2Triggered);
             playerData.Stage3Triggered = playersNbt.getCompound(key).getBoolean("stage3Triggered");
+            RedstonePoisoning.LOGGER.info("Loading Stage3Triggered at value " + playerData.Stage3Triggered);
 
             UUID uuid = UUID.fromString(key);
             state.players.put(uuid, playerData);

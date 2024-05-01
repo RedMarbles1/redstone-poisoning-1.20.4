@@ -13,7 +13,8 @@ public class InvCheck {
 
     public static int MaxHoldTimeUntilStage1 = 72000;
     public static int MaxHoldTimeUntilStage2 = 144000;
-    public static int MaxHoldTimeUntilStage3 = 196000;
+    public static int MaxHoldTimeUntilStage3 = 216000;
+    public static int MaxHoldTimeUntilStage4 = 288000;
 
     public static void initialize() {
         ServerTickEvents.END_WORLD_TICK.register(world -> {
@@ -44,13 +45,18 @@ public class InvCheck {
                 playerState.Stage1Triggered = true;
             } else if (MaxHoldTimeUntilStage3 > playerState.CurrentHoldTime && playerState.CurrentHoldTime >= MaxHoldTimeUntilStage2) {
                 //Start stage 2 effects and make Stage2Triggered true
+                PoisonEffects.Stage1Effects(player);
                 PoisonEffects.Stage2Effects(player);
                 playerState.Stage2Triggered = true;
-            }
+            } else if (MaxHoldTimeUntilStage4 > playerState.CurrentHoldTime && playerState.CurrentHoldTime >= MaxHoldTimeUntilStage3) {
+            //Start stage 2 effects and make Stage2Triggered true
+            PoisonEffects.Stage3Effects(player);
+            playerState.Stage3Triggered = true;
+        }
 
 
         } else if (!playerState.Stage2Triggered) {
-            //Check if player is submerged and cleanse the player appropiately
+            //Check if player is submerged and cleanse the player appropriately
             if (player.isSubmergedInWater()) {
                 playerState.CurrentHoldTime -= 6000;
             } else if (playerState.Stage3Triggered) {
