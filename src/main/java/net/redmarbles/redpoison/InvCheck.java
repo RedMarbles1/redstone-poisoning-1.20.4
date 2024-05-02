@@ -39,22 +39,6 @@ public class InvCheck {
             //Increase hold time count
             playerState.CurrentHoldTime++;
 
-            if (MaxHoldTimeUntilStage2 > playerState.CurrentHoldTime && playerState.CurrentHoldTime >= MaxHoldTimeUntilStage1){
-                //Start stage 1 effects and make Stage1Triggered true
-                PoisonEffects.Stage1Effects(player);
-                playerState.Stage1Triggered = true;
-            } else if (MaxHoldTimeUntilStage3 > playerState.CurrentHoldTime && playerState.CurrentHoldTime >= MaxHoldTimeUntilStage2) {
-                //Start stage 2 effects and make Stage2Triggered true
-                PoisonEffects.Stage1Effects(player);
-                PoisonEffects.Stage2Effects(player);
-                playerState.Stage2Triggered = true;
-            } else if (MaxHoldTimeUntilStage4 > playerState.CurrentHoldTime && playerState.CurrentHoldTime >= MaxHoldTimeUntilStage3) {
-            //Start stage 2 effects and make Stage2Triggered true
-            PoisonEffects.Stage3Effects(player);
-            playerState.Stage3Triggered = true;
-        }
-
-
         } else if (!playerState.Stage2Triggered) {
             //Check if player is submerged and cleanse the player appropriately
             if (player.isSubmergedInWater()) {
@@ -64,12 +48,34 @@ public class InvCheck {
             } else {
             playerState.CurrentHoldTime--;
             }
+        } else {
+
+            playerState.CurrentHoldTime = playerState.CurrentHoldTime + 0.5;
+
         }
         if (playerState.CurrentHoldTime < MaxHoldTimeUntilStage1) {
+
             playerState.Stage1Triggered = false;
+
         }
         if (playerState.CurrentHoldTime < 0) {
+
             playerState.CurrentHoldTime = 0;
+
+        }
+        if (MaxHoldTimeUntilStage2 > playerState.CurrentHoldTime && playerState.CurrentHoldTime >= MaxHoldTimeUntilStage1){
+            //Start stage 1 effects and make Stage1Triggered true
+            PoisonEffects.Stage1Effects(player);
+            playerState.Stage1Triggered = true;
+        } else if (MaxHoldTimeUntilStage3 > playerState.CurrentHoldTime && playerState.CurrentHoldTime >= MaxHoldTimeUntilStage2) {
+            //Start stage 2 effects and make Stage2Triggered true
+            PoisonEffects.Stage1Effects(player);
+            PoisonEffects.Stage2Effects(player);
+            playerState.Stage2Triggered = true;
+        } else if (MaxHoldTimeUntilStage4 > playerState.CurrentHoldTime && playerState.CurrentHoldTime >= MaxHoldTimeUntilStage3) {
+            //Start stage 2 effects and make Stage2Triggered true
+            PoisonEffects.Stage3Effects(player);
+            playerState.Stage3Triggered = true;
         }
     }
 
